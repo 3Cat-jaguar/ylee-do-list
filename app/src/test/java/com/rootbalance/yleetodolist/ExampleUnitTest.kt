@@ -1,8 +1,9 @@
 package com.rootbalance.yleetodolist
 
-import org.junit.Test
-
+import com.rootbalance.yleetodolist.model.TddTest
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
+import org.junit.Test
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -12,6 +13,17 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        assertEquals(3, 1 + 2)
     }
+
+    @Test
+    fun `test fetchData Flow`() =
+        runBlocking {
+            val testClass = TddTest()
+            val result = testClass.findByContent("test", true)
+
+            result.collect { todo ->
+                assertEquals("hello", todo.todo)
+            }
+        }
 }

@@ -17,7 +17,7 @@ interface TodoDao {
     suspend fun insert(todo: Todo)
 
     @Delete
-    suspend fun delete(todo: Todo)
+    suspend fun delete(vararg todo: Todo)
 
     @Query("DELETE FROM todolist")
     suspend fun deleteAll()
